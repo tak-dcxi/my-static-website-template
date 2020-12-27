@@ -1,0 +1,14 @@
+@use '../../foundation/variables/breakpoints' as *;
+
+@mixin responsive($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media screen and #{inspect(map-get($breakpoints, $breakpoint))} {
+      @content;
+    }
+  }
+
+  // マップ型で定義されていない値が呼び出された時はエラーを返す
+  @else {
+    @error '指定されたブレークポイントは定義されていません。' + '指定できるブレークポイントは次のとおりです。 -> #{map-keys($breakpoints)}';
+  }
+}

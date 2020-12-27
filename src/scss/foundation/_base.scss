@@ -1,0 +1,291 @@
+/**
+ * このベースCSSは Normalize.css および sanitize.css を元に僕個人が複数のプロジェクトで共通で指定しておきたいスタイルをまとめたものです。
+ * author: TAK(https://twitter.com/tak_dcxi)
+ */
+
+@use '../global' as *;
+
+/* ==========================================================================
+  Document
+  ========================================================================== */
+
+/**
+ * 1. ボックスの縦横幅に`margin`および`border`を含む。
+ * 2. ChromeとFirefoxのフォントレンダリングを合わせる。
+ * 3. Safariでのbodyの高さを整える。
+ * 4. iOSのタップ時のハイライトを無効化する。
+ */
+html {
+  box-sizing: border-box; /* 1 */
+  -webkit-font-smoothing: subpixel-antialiased; /* 2 */
+  -moz-osx-font-smoothing: auto; /* 2 */
+  height: 100%; /* 3 */
+  -webkit-tap-highlight-color: transparent; /* 4 */
+  width: 100%;
+}
+
+/**
+ * 1. ボックスの縦横幅に`margin`および`border`を含む。
+ * 2. `margin`はコンポーネント毎に設定したいのでブラウザのデフォルトのスタイルを含めてベースは0にしておく。
+ * 3. 「視差効果を減らす」を設定している場合はアニメーション時間を短くする。
+ */
+*,
+::before,
+::after {
+  box-sizing: inherit; /* 1 */
+  margin: 0; /* 2 */
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: 1ms !important;  /* 3 */
+    scroll-behavior: auto !important;  /* 3 */
+    transition: 1ms !important;  /* 3 */
+  }
+}
+
+/**
+ * 1. Safariでのbodyの高さを整える。
+ * 2. 原則的に文章は禁則処理を行う。
+ */
+body {
+  background-color: $backgroundColor_base;
+  color: $fontColor_base;
+  font-family: $fontFamily_sansSerif;
+  font-weight: 400;
+  line-height: $lineHeight_default;
+  min-height: 100%; /* 1 */
+  padding: 0;
+  width: 100%;
+  word-break: break-all; /* 2 */
+
+  @include responsive(sm) {
+    font-size: $fontSize_small;
+  }
+
+  @include responsive(md) {
+    font-size: $fontSize_middle;
+  }
+}
+
+/* ==========================================================================
+  Section & Heading
+  ========================================================================== */
+
+/**
+ * 1. メインコンテンツ内は横スクロールを無効にして、横スクロールバーが出るのを防止する。
+ */
+main {
+  overflow-x: hidden; /* 1 */
+}
+
+/**
+ * 1. 見出しのフォントサイズはブラウザ標準のそれを使うことがないのでリセットしておく。
+ * 2. 太字にしない見出しデザインが多いのでリセットする。
+ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 1em; /* 1 */
+  font-weight: inherit; /* 2 */
+}
+
+/**
+ * normalize.cssのスタイルをリセットする
+ */
+h1 {
+  margin: 0;
+}
+
+/* ==========================================================================
+  Text
+  ========================================================================== */
+
+/**
+ * 日本語では斜体を使用することが少ないのでリセットする。
+ */
+i,
+cite,
+em,
+address,
+dfn {
+  [lang='ja'] & {
+    font-style: normal;
+  }
+}
+
+/**
+ * `small`は小文字で使うとは限らないのでリセットしておく。
+ */
+small {
+  font-size: 1em;
+}
+
+/**
+ * あまり実務では使わない要素ではあるがNormalize.cssに含まれていたので念の為。
+ */
+code,
+kbd,
+samp {
+  font-family: $fontFamily_monospace;
+  font-size: rem(16px);
+}
+
+/* ==========================================================================
+  Link
+  ========================================================================== */
+
+/**
+ * 1. テキストカラーは原則的に親要素のそれを継承する。
+ * 2. 多くのデザインでは`a`の下線は不要なことが多いので下線を取り除いているが、CMS案件では顧客がリンクを仕込むことを考慮して適宜下線を復活させるように。
+ */
+a {
+  color: inherit; /* 1 */
+  text-decoration: none; /* 2 */
+}
+
+/* ==========================================================================
+  Grouping
+  ========================================================================== */
+
+/**
+ * 原則的にブラウザ標準のリストマーカーは不要になることが多いのでリセットしておくが、別途箇条書き用のスタイルは用意しておく。
+ */
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+/* ==========================================================================
+  Replaced element
+  ========================================================================== */
+
+/**
+ * 縦位置を揃える。
+ */
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+/**
+ * 1. 画像の余白をなくす
+ * 2. 画像は原則的にフルード化する。`width`属性が付与されている場合は`max-width`は無効化されるが、保険のためにつけておく。
+ */
+img {
+  height: auto; /* 2 */
+  max-width: 100%; /* 2 */
+  vertical-align: middle; /* 1 */
+}
+
+/**
+ * `fill`属性のないSVGの色は親要素のテキストカラーを継承する。詳細度が0.1.1なので上書き時は注意。
+ * Read it: https://zenn.dev/tak_dcxi/articles/f464f90a24f754b15dd9
+ */
+svg:not([fill]) {
+  fill: currentColor;
+}
+
+/**
+ * IEでのはみ出しを防止する
+ */
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/**
+ * iframeのボーダーは取り除く。
+ */
+iframe {
+  border-style: none;
+}
+
+/* ==========================================================================
+  Form
+  ========================================================================== */
+
+/**
+ * プレースホルダーのズレを防ぐ。
+ */
+input[type='text'] {
+  line-height: normal;
+}
+
+/**
+ * IEの入力内容の消去機能は非表示にする。
+ */
+[type='text']::-ms-clear {
+  visibility: hidden;
+}
+
+/**
+ * IEのマスクの一時的解除機能を非表示にする。
+ */
+[type='password']::-ms-reveal {
+  visibility: hidden;
+}
+
+/**
+ * モダンブラウザで表示を統一するためにChromeとFireFoxのスピニングを非表示にする。
+ */
+[type='number']::-webkit-outer-spin-button,
+[type='number']::-webkit-inner-spin-button {
+  appearance: none;
+}
+
+/**
+ * デフォルトのスタイルをリセットする。
+ */
+fieldset {
+  border: 0;
+  min-width: auto;
+  padding: 0;
+}
+
+/**
+ * 見出しはブロック要素として扱ったほうが都合が良い。
+ */
+legend {
+  display: block;
+}
+
+/* ==========================================================================
+  Accessibility
+  ========================================================================== */
+
+/**
+ * キーボードでアクセスできない要素のフォーカスインジケーターを無効化する。
+ */
+[tabindex='-1']:focus {
+  outline: none !important;
+}
+
+/**
+ * `aria-busy="true"`が指定された要素ではカーソルを読み込みの時のものにする。
+ */
+[aria-busy='true'] {
+  cursor: progress;
+}
+
+/*
+ * `disabled`された要素ではカーソルで要求された操作が受け付けられないことを示す。
+ */
+[aria-disabled='true'],
+[disabled] {
+  cursor: not-allowed;
+}
+
+/**
+ * キーボード操作"以外"でフォーカスされた際はフォーカスインジケーターを消す。
+ * Safariで標準搭載されるまでは実装時に必ずfocus-visibleのPolyfillを導入する。
+ * Read it: https://zenn.dev/tak_dcxi/articles/f958e96888ee47
+ */
+.js-focus-visible :focus:not(.focus-visible) {
+  outline: 0;
+}

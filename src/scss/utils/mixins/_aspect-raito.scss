@@ -1,0 +1,58 @@
+// @overview - 画像やGoogle Map、YouTubeの埋め込みなどを縦横比を維持したままレスポンシブ対応します。
+// @param {Number} $width - 横幅もしくは横比率。
+// @param {Number} $height - 縦幅もしくは縦比率。
+// @example scss - Usage
+//
+// .example {
+//   @include aspect-ratio(16, 9);
+// }
+//
+// @example css - Output
+//
+// .example {
+//  position: relative;
+// }
+//
+// .example::before {
+//  content: '';
+//  float: left;
+//  padding-top: 56.25%;
+// }
+//
+// .example::after {
+//   clear: both;
+//   content: '';
+//   display: table;
+// }
+//
+// .example > :first-child {
+//   height: 100%;
+//   left: 0;
+//   position: absolute;
+//   top: 0;
+//   width: 100%;
+// }
+
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+
+  &::before {
+    content: '';
+    float: left;
+    padding-top: ($height / $width) * 100%;
+  }
+
+  &::after {
+    clear: both;
+    content: '';
+    display: table;
+  }
+
+  & > :first-child {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}

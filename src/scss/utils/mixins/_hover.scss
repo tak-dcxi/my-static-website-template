@@ -1,0 +1,17 @@
+@mixin hover($ie: true) {
+  @media (hover) {
+    &:hover {
+      @content;
+    }
+  }
+
+  &:focus {
+    @content;
+  }
+
+  @if $ie {
+    @at-root .ua-ie &:hover {
+      @content;
+    }
+  }
+}

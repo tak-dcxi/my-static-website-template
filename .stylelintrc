@@ -1,0 +1,112 @@
+{
+  "extends": [
+    "stylelint-config-standard"
+  ],
+  "plugins": [
+    "stylelint-scss",
+    "stylelint-order"
+  ],
+  "ignoreFiles": [
+    "dist/assets/css/**/*.css"
+  ],
+  "rules": {
+    "order/properties-alphabetical-order": true,
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true,
+    "scss/selector-no-union-class-name": true,
+    "no-duplicate-selectors": null,
+    "indentation": 2,
+    "color-hex-case": "lower",
+    "color-hex-length": "short",
+    "color-named": "never",
+    "color-no-invalid-hex": true,
+    "function-comma-space-after": "always-single-line",
+    "function-comma-space-before": "never",
+    "number-no-trailing-zeros": true,
+    "string-no-newline": true,
+    "string-quotes": "single",
+    "length-zero-no-unit": true,
+    "unit-case": "lower",
+    "unit-no-unknown": true,
+    "value-list-comma-newline-after": "always-multi-line",
+    "value-list-comma-space-after": "always-single-line",
+    "value-list-comma-space-before": "never",
+    "shorthand-property-no-redundant-values": true,
+    "property-case": "lower",
+    "declaration-bang-space-after": "never",
+    "declaration-bang-space-before": "always",
+    "declaration-colon-newline-after": "always-multi-line",
+    "declaration-colon-space-after": "always-single-line",
+    "declaration-colon-space-before": "never",
+    "declaration-block-no-shorthand-property-overrides": true,
+    "declaration-block-semicolon-newline-after": "always-multi-line",
+    "declaration-block-semicolon-newline-before": "never-multi-line",
+    "declaration-block-semicolon-space-after": "always-single-line",
+    "declaration-block-semicolon-space-before": "never",
+    "declaration-block-trailing-semicolon": "always",
+    "block-closing-brace-empty-line-before": "never",
+    "block-closing-brace-newline-after": "always",
+    "block-closing-brace-newline-before": "always-multi-line",
+    "block-opening-brace-space-after": "always-single-line",
+    "block-opening-brace-space-before": "always",
+    "selector-attribute-brackets-space-inside": "never",
+    "selector-attribute-operator-space-after": "never",
+    "selector-attribute-operator-space-before": "never",
+    "selector-combinator-space-after": "always",
+    "selector-combinator-space-before": "always",
+    "selector-descendant-combinator-no-non-space": true,
+    "selector-max-empty-lines": 1,
+    "selector-pseudo-class-case": "lower",
+    "selector-pseudo-class-parentheses-space-inside": "never",
+    "selector-type-case": "lower",
+    "selector-list-comma-newline-after": "always",
+    "selector-list-comma-newline-before": "never-multi-line",
+    "selector-list-comma-space-before": "never",
+    "media-feature-colon-space-after": "always",
+    "media-feature-colon-space-before": "never",
+    "media-feature-name-case": "lower",
+    "media-feature-parentheses-space-inside": "never",
+    "media-feature-range-operator-space-after": "always",
+    "media-feature-range-operator-space-before": "always",
+    "media-query-list-comma-newline-after": "always-multi-line",
+    "media-query-list-comma-newline-before": "never-multi-line",
+    "media-query-list-comma-space-after": "always-single-line",
+    "media-query-list-comma-space-before": "never",
+    "at-rule-name-case": "lower",
+    "at-rule-name-space-after": "always-single-line",
+    "at-rule-semicolon-newline-after": "always",
+    "comment-whitespace-inside": "always",
+    "max-empty-lines": 2,
+    "no-extra-semicolons": true,
+    "no-missing-end-of-source-newline": true,
+    "no-descending-specificity": null,
+    "rule-empty-line-before": [
+      "always",
+      {
+        "except": [
+          "after-single-line-comment",
+          "first-nested"
+        ],
+        "ignore": [
+          "after-comment",
+          "first-nested"
+        ]
+      }
+    ],
+    "at-rule-empty-line-before": [
+      "always",
+      {
+        "except": [
+          "first-nested",
+          "blockless-after-blockless"
+        ],
+        "ignore": [
+          "after-comment"
+        ],
+        "ignoreAtRules": [
+          "else"
+        ]
+      }
+    ]
+  }
+}

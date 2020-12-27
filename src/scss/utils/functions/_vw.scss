@@ -1,0 +1,20 @@
+// @overview - pxをvwに変換します。
+// @param {String} $px - 指定するピクセル値。
+// @param {String} $base [375] - 基準となる画面幅のサイズです。デフォルト値は375px。
+// @example - vw(40px) => 10.66667vw
+
+@use './_strip-unit' as *;
+
+@function vw($px, $base: 375px) {
+  $value: $px;
+
+  // 単位がpx以外の場合は警告を出してそのまま返す
+  @if (unit($px) != 'px') {
+    @warn 'vw()の引数にpx以外の値を指定しても計算できません';
+    @return $value;
+  }
+
+  $value: (strip-unit($px) / strip-unit($base)) * 100vw;
+
+  @return $value;
+}

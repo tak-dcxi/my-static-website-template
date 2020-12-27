@@ -1,0 +1,24 @@
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="email=no,telephone=no,address=no">
+<title>{% if page.url !== '/' %}{{ title }} | {% endif %}{{ site.name }}</title>
+<meta name="description" content="{{ description }}">
+
+<meta property="og:title" content="{{ site.name }}">
+<meta property="og:type" content="{% if page.url === '/' %}website{% else %}article{% endif %}">
+<meta property="og:image" content="https://example.com/ogp.jpg">
+<meta property="og:url" content="{{ url }}">
+<meta property="og:description" content="サイトの概要">
+<meta property="og:site_name" content="サイト名">
+<meta property="og:locale" content="ja">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@tak_dcxi">
+
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | url }}">
+{% block css -%}{%- endblock %}
+<script src="{{ '/assets/js/bundle.js' | url }}" defer></script>
+{% block js -%}{%- endblock %}
+<script>
+  document.documentElement.classList.remove('no-js');
+</script>

@@ -1,0 +1,16 @@
+// @overview - `transition-timing-function`と`animation-timing-function`プロパティに指定する3次ベジェ曲線のイージング関数です。実際の動きは下記のWebサイトで確認できます。
+// @see https://matthewlein.com/tools/ceaser
+// @param {String} $easing - 指定するイージング関数
+// @example - ease(out-expo) => cubic-bezier(.19, 1, .22, 1)
+
+@use '../../foundation/variables/easings' as *;
+
+@function ease($easing) {
+  @if map-has-key($easings, $easing) {
+    @return map-get($easings, $easing);
+  }
+
+  // 定義されていないイージングが指定された時は警告を出して初期値のeaseを返す
+  @warn 'イージング"#{$easing}"は定義されていません';
+  @return ease;
+}

@@ -1,0 +1,11 @@
+@mixin object-fit($value: fill, $position: null) {
+  object-fit: $value;
+
+  @if $position {
+    font-family: 'object-fit: #{$value}; object-position: #{$position}', sans-serif;
+    object-position: $position;
+  }
+  @else {
+    font-family: 'object-fit: #{$value}', sans-serif;
+  }
+}

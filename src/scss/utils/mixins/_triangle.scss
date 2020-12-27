@@ -1,0 +1,50 @@
+@mixin triangle($direction, $width, $height, $color: currentColor) {
+  // 定義されている方向が指定されている、もしくは方向が指定されていなかったらエラーを返す
+  @if not index(upward rightward downward leftward upper-left upper-right lower-right lower-left, $direction) {
+    @error 'triangle()の方向は"upward","rightward","downward","leftward","upper-left","upper-right","lower-right","lower-left"から指定してください';
+  }
+
+  border-style: solid;
+  height: 0;
+  width: 0;
+
+  @if $direction == upward {
+    border-color: transparent transparent $color transparent;
+    border-width: 0 ($width / 2) $height ($width / 2);
+  }
+
+  @if $direction == rightward {
+    border-color: transparent transparent transparent $color;
+    border-width: ($height / 2) 0 ($height / 2) $width;
+  }
+
+  @if $direction == downward {
+    border-color: $color transparent transparent transparent;
+    border-width: $height ($width / 2) 0 ($width / 2);
+  }
+
+  @if $direction == leftward {
+    border-color: transparent $color transparent transparent;
+    border-width: ($height / 2) $width ($height / 2) 0;
+  }
+
+  @if $direction == upper-left {
+    border-color: $color transparent transparent transparent;
+    border-width: $height $height 0 0;
+  }
+
+  @if $direction == upper-right {
+    border-color: transparent $color transparent transparent;
+    border-width: 0 $height $height 0;
+  }
+
+  @if $direction == lower-right {
+    border-color: transparent transparent $color transparent;
+    border-width: 0 0 $height $height;
+  }
+
+  @if $direction == lower-left {
+    border-color: transparent transparent transparent $color;
+    border-width: $height 0 0 $height;
+  }
+}

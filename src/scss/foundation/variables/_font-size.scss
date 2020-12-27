@@ -1,0 +1,8 @@
+@use '../../utils/functions/_rem' as *;
+
+// フォントサイズ
+$fontSize_xsmall: rem(12px);
+$fontSize_small: rem(14px);
+$fontSize_middle: rem(16px);
+$fontSize_large: rem(18px);
+$fontSize_xlarge: rem(24px);
