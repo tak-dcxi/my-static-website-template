@@ -93,6 +93,7 @@ module.exports = {
         },
       ],
     }),
+    // 出力する画像を自動で圧縮する
     new ImageminPlugin({
       test: /\.(jpe?g|png|gif|svg)$/i,
       pngquant: {

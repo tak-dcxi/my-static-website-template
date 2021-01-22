@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html class="no-js" lang="ja">
-<head>
-  {%- include 'layout/_meta.njk' %}
-</head>
-<body>
-  <div class="l-site">
-    <header class="l-site__header">
-      {%- include 'layout/_header.njk' %}
-    </header>
-    <main class="l-site__main">
-      {% block main -%}
-      コンテンツ
-      {%- endblock %}
-    </main>
-    <footer class="l-site__footer">
-      {%- include 'layout/_footer.njk' %}
-    </footer>
-  </div>
-</body>
+  <head>
+    {%- include 'head/_meta.njk' %}
+    {%- include 'head/_css.njk' %}
+    {%- include 'head/_script.njk' %}
+  </head>
+  <body>
+    <div class="l-Page">
+      <header class="l-Page_Header">
+        {%- include 'layout/_header.njk' %}
+      </header>
+      <main role="main" class="l-Page_Main">
+        {% block main -%}{%- endblock %}
+      </main>
+      <footer class="l-Page_Footer">
+        {%- include 'layout/_footer.njk' %}
+      </footer>
+    </div>
+  </body>
 </html>

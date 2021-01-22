@@ -1,0 +1,47 @@
+<script src="{{ '/assets/js/bundle.js' | url }}" defer></script>
+{% block js -%}{%- endblock %}
+<script>
+  function getPolyfill(src, integrity) {
+    var script = document.createElement("script");
+    script.src = src;
+    script.integrity = integrity;
+    script.crossOrigin = "anonymous";
+    script.defer = true;
+    document
+      .head
+      .appendChild(script);
+  }
+</script>
+<script>
+  if (!("inert" in document.documentElement)) {
+    getPolyfill("https://cdn.jsdelivr.net/npm/wicg-inert@3.1.0/dist/inert.min.js", "sha384-RkY5SwIRNwK/U6yj2dNeFxYJEA1FjwffakxeSJvsggmMidmbsCrH4PJ/799+3qMb");
+  }
+</script>
+<script>
+  try {
+    document.querySelector(":focus-visible");
+  } catch (e) {
+    getPolyfill("https://cdn.jsdelivr.net/npm/focus-visible@5.2.0/dist/focus-visible.min.js", "sha384-xRa5B8rCDfdg0npZcxAh+RXswrbFk3g6dlHVeABeluN8EIwdyljz/LqJgc2R3KNA");
+  }
+</script>
+<script>
+  if (!window.HTMLPictureElement) {
+    getPolyfill("https://cdn.jsdelivr.net/npm/picturefill@3.0.3/dist/picturefill.min.js", "sha384-xRa5B8rCDfdg0npZcxAh+RXswrbFk3g6dlHVeABeluN8EIwdyljz/LqJgc2R3KNA");
+  }
+</script>
+<script>
+  if (!("objectFit" in document.documentElement.style)) {
+    getPolyfill("https://cdn.jsdelivr.net/npm/object-fit-images@3.2.4/dist/ofi.min.js", "sha384-GOTasnp7a/eSjnwcNDne3AqLTCR1Ax6dwWrZsPhBvSGDwp6XkOyJ2dTvSM2IGOnE");
+  }
+</script>
+<script>
+  if (!("scrollBehavior" in document.documentElement.style)) {
+    getPolyfill("https://cdn.jsdelivr.net/npm/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js", "sha384-EYn4rWu1DHvYD0sSSSbMEtXQmMl58CFJd897806+RT1jJVYbhuZlZMN6yG9nCyFa");
+  }
+</script>
+<script>
+  document
+    .documentElement
+    .classList
+    .remove('no-js');
+</script>
